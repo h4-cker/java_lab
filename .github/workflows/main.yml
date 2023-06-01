@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'oracle'
-          version: '8'
+          java-version: '8'
 
       - name: Build Maven
         run:
