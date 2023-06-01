@@ -2,9 +2,11 @@ name: java lab
 
 on: 
   push: 
-    branches: master
+    branches:
+      - 'master'
   pull_request:
-    branches: master
+    branches:
+      - 'master'
     
   workflow_dispatch:
     
@@ -16,13 +18,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-          
-      - name: Build java
-        run: 
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'oracle'
+          version: '8'
+
+      - name: Build Maven
+        run:
+          mvn --batch-node --update-snapshots package
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3
         with:
           name: java_lab
-          path: javaLab.jar
+          path: target/
           retention-days: 5
