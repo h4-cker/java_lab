@@ -26,8 +26,7 @@ jobs:
           java-version: '17'
 
       - name: Build Maven
-        run:
-          mvn --batch-node --update-snapshots package
+        run: mvn --batch-mode --update-snapshots package
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3
